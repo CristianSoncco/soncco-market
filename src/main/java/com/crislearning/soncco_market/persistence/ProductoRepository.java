@@ -5,38 +5,53 @@ import java.util.Optional;
 
 import org.springframework.stereotype.Repository;
 
+import com.crislearning.soncco_market.domain.Product;
+import com.crislearning.soncco_market.domain.repository.ProductRepository;
 import com.crislearning.soncco_market.persistence.crud.ProductoCrudRepository;
 import com.crislearning.soncco_market.persistence.entity.Producto;
+import com.crislearning.soncco_market.persistence.mapper.ProductMapper;
 
 @Repository
-public class ProductoRepository {
+public class ProductoRepository implements ProductRepository{
     private ProductoCrudRepository productoCrudRepository;
+    private ProductMapper mapperProduct;
     
-    public List<Producto> getAll(){
-        return (List<Producto>) productoCrudRepository.findAll();
-    }
-    
-    public List<Producto> getByCategoria(int idCategoria){
-        return productoCrudRepository.findByIdCategoriaOrderByNombreAsc(idCategoria);
-    }
-
-    public Optional<List<Producto>> getEscasos(int cantidad) {
-        return productoCrudRepository.findByCantidadStockLessThanAndEstado(cantidad,"P");
+    public List<Product> getAll(){
+        List<Producto> productos= (List<Producto>) productoCrudRepository.findAll();
+        return mapperProduct.toProducts(productos);
     }
 
     public List<Producto> getComprasRealizadasDeUnaCategoriaPorCliente(Integer idCategoria, String idCliente) {
         return productoCrudRepository.findByIdCategoriaAndComprasProductosCompraIdCliente(idCategoria, idCliente);
     }
 
-    public Optional<Producto> getProducto(int idProducto){
-        return productoCrudRepository.findById(idProducto);
+
+
+    @Override
+    public void delete(int productId){
+        productoCrudRepository.deleteById(productId);
     }
 
-    public Producto save(Producto producto){
-        return productoCrudRepository.save(producto);
+    @Override
+    public Optional<List<Product>> getByCategory(int categoryId) {
+        List<Producto> productos = productoCrudRepository.findByIdCategoriaOrderByNombreAsc(categoryId);
+        return Optional.of(mapperProduct.toProducts(productos));
     }
 
-    public void delete(int idProducto){
-        productoCrudRepository.deleteById(idProducto);
+    @Override
+    public Optional<List<Product>> getScarceProducts(int quantity) {
+        Optional<List<Producto>> productosEscasos = productoCrudRepository.findByCantidadStockLessThanAndEstado(quantity,"P");
+         return productosEscasos.map(prods -> mapperProduct.toProducts(prods));
     }
+
+    @Override
+    public Optional<Product> getProduct(int productId) {
+         return productoCrudRepository.findById(productId).map(prod ->mapperProduct.toProduct(prod)) ;
+    }
+
+    @Override
+    public Product save(Product product) {
+        return mapperProduct.toProduct(productoCrudRepository.save(mapperProduct.toProducto(product)));
+    }
+
 }
