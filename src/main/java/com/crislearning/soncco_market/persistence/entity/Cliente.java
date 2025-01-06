@@ -2,11 +2,15 @@ package com.crislearning.soncco_market.persistence.entity;
 
 import java.util.List;
 
-import org.springframework.data.annotation.Id;
 
 import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
 
+@Entity
+@Table(name = "CLIENTES")
 public class Cliente {
     @Id
     @Column(name = "id", length = 20)

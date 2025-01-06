@@ -1,5 +1,7 @@
 package com.crislearning.soncco_market.persistence.entity;
 
+import java.math.BigDecimal;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
@@ -18,7 +20,7 @@ public class ComprasProducto {
     private Integer cantidad;
 
     @Column(name = "total", precision = 16, scale = 2)
-    private Double total;
+    private BigDecimal total;
 
     @Column(name = "estado")
     private Integer estado;
@@ -47,11 +49,11 @@ public class ComprasProducto {
         this.cantidad = cantidad;
     }
 
-    public Double getTotal() {
+    public BigDecimal  getTotal() {
         return total;
     }
 
-    public void setTotal(Double total) {
+    public void setTotal(BigDecimal  total) {
         this.total = total;
     }
 
