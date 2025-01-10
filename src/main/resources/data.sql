@@ -1,4 +1,8 @@
-
+/*
+select iseq$$_77401.nextval from dual;
+select iseq$$_77404.nextval from dual;
+select iseq$$_77409.nextval from dual;
+*/
 
 -- CATEGORIAS
 INSERT INTO categorias (id_categoria, descripcion, estado) VALUES (1, 'Frutas y verduras', 1);
