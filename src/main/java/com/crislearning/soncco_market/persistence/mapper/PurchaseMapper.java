@@ -2,7 +2,7 @@ package com.crislearning.soncco_market.persistence.mapper;
 
 import java.util.List;
 
-import org.mapstruct.InheritConfiguration;
+import org.mapstruct.InheritInverseConfiguration;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Mappings;
@@ -24,7 +24,7 @@ public interface PurchaseMapper {
     Purchase toPurchase(Compra compra);
     List<Purchase> toPurchases(List<Compra> compras);
 
-    @InheritConfiguration
+    @InheritInverseConfiguration
     @Mapping(target = "cliente",ignore = true)
     Compra toCompra(Purchase purchase);
 }
