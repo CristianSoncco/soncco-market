@@ -31,6 +31,9 @@ public class CompraRepository implements PurchaseRepository{
     public Purchase save(Purchase purchase) {
         Compra compra= purchaseMapper.toCompra(purchase);
         //guardar en cascada los ComprasProducto
+        if (compra.getIdCompra() != null && compra.getIdCompra() == 0) {
+            compra.setIdCompra(null); // Esto permitirá a Hibernate generar el ID
+        }
         compra.getCompraProductos().forEach(producto->producto.setCompra(compra));
         return purchaseMapper.toPurchase(compraCrudRepository.save(compra));
     }
