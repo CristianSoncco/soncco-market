@@ -3,6 +3,7 @@ package com.crislearning.soncco_market.persistence.entity;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -40,9 +41,24 @@ public class Compra {
     @JoinColumn(name = "ID_CLIENTE",insertable = false,updatable = false)
     private Cliente cliente;
 
-    @OneToMany(mappedBy = "compra")
-    private List<ComprasProducto> productos;
+    @OneToMany(mappedBy = "compra",cascade = {CascadeType.ALL})
+    private List<ComprasProducto> compraProductos;
 
+    public List<ComprasProducto> getCompraProductos() {
+        return compraProductos;
+    }
+
+    public void setCompraProductos(List<ComprasProducto> compraProductos) {
+        this.compraProductos = compraProductos;
+    }
+
+    public Cliente getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
+    }
 
     public Integer getIdCompra() {
         return idCompra;

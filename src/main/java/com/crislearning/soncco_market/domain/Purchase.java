@@ -9,7 +9,7 @@ public class Purchase {
     private LocalDateTime date;
     private String paymentMethod;
     private String comment;
-    private String state;
+    private String active;
     private List<PurchaseItem> items;
 
     public int getPurchaseId() {
@@ -52,12 +52,12 @@ public class Purchase {
         this.comment = comment;
     }
 
-    public String getState() {
-        return state;
+    public String getActive() {
+        return active;
     }
 
-    public void setState(String state) {
-        this.state = state;
+    public void setActive(String active) {
+        this.active = active;
     }
 
     public List<PurchaseItem> getItems() {

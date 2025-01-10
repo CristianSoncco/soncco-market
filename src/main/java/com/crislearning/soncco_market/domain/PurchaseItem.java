@@ -30,7 +30,7 @@ public class PurchaseItem {
         this.total = total;
     }
 
-    public int isActive() {
+    public int getActive() {
         return active;
     }
 

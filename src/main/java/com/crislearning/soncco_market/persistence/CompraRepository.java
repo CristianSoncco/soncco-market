@@ -29,6 +29,9 @@ public class CompraRepository implements PurchaseRepository{
     }
     @Override
     public Purchase save(Purchase purchase) {
-        return purchaseMapper.toPurchase(compraCrudRepository.save(purchaseMapper.toCompra(purchase)));
+        Compra compra= purchaseMapper.toCompra(purchase);
+        //guardar en cascada los ComprasProducto
+        compra.getCompraProductos().forEach(producto->producto.setCompra(compra));
+        return purchaseMapper.toPurchase(compraCrudRepository.save(compra));
     }
 }
