@@ -3,6 +3,7 @@ package com.crislearning.soncco_market.persistence;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.crislearning.soncco_market.domain.Product;
@@ -13,7 +14,9 @@ import com.crislearning.soncco_market.persistence.mapper.ProductMapper;
 
 @Repository
 public class ProductoRepository implements ProductRepository{
+    @Autowired
     private ProductoCrudRepository productoCrudRepository;
+    @Autowired
     private ProductMapper mapperProduct;
     
     public List<Product> getAll(){

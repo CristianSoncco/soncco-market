@@ -20,7 +20,7 @@ import jakarta.persistence.Table;
 @Table(name = "PRODUCTOS")
 public class Producto {
     
-    @Id
+    @Id 
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Column(name="ID_PRODUCTO")
     private Integer idProducto;
@@ -50,6 +50,22 @@ public class Producto {
     @OneToMany(mappedBy = "producto")
     private List<ComprasProducto> comprasProductos;
 
+    public Categoria getCategoria() {
+        return categoria;
+    }
+
+    public void setCategoria(Categoria categoria) {
+        this.categoria = categoria;
+    }
+
+    public List<ComprasProducto> getComprasProductos() {
+        return comprasProductos;
+    }
+
+    public void setComprasProductos(List<ComprasProducto> comprasProductos) {
+        this.comprasProductos = comprasProductos;
+    }
+
     public Integer getIdProducto() {
         return idProducto;
     }
@@ -66,11 +82,11 @@ public class Producto {
         this.nombre = nombre;
     }
 
-    public Integer getId_categoria() {
+    public Integer getIdCategoria() {
         return idCategoria;
     }
 
-    public void setId_categoria(Integer idCategoria) {
+    public void setIdCategoria(Integer idCategoria) {
         this.idCategoria = idCategoria;
     }
 
