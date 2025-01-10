@@ -3,19 +3,19 @@ package com.crislearning.soncco_market.domain;
 import java.math.BigDecimal;
 
 public class Product {
-    private int productId;
+    private Integer productId;
     private String name;
-    private int categoryId;
+    private Integer categoryId;
     private BigDecimal price;
     private int stock;
     private String active;
     private Category category;
 
-    public int getProductId() {
+    public Integer getProductId() {
         return productId;
     }
 
-    public void setProductId(int productId) {
+    public void setProductId(Integer productId) {
         this.productId = productId;
     }
 
@@ -27,11 +27,11 @@ public class Product {
         this.name = name;
     }
 
-    public int getCategoryId() {
+    public Integer getCategoryId() {
         return categoryId;
     }
 
-    public void setCategoryId(int categoryId) {
+    public void setCategoryId(Integer categoryId) {
         this.categoryId = categoryId;
     }
 
