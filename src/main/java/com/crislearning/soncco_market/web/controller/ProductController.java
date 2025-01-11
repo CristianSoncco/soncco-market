@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.crislearning.soncco_market.domain.Product;
 import com.crislearning.soncco_market.domain.service.ProductService;
 
+import io.swagger.v3.oas.annotations.Operation;
+
 @RestController 
 @RequestMapping("/products")
 public class ProductController {
@@ -22,6 +24,7 @@ public class ProductController {
     private ProductService productService;
 
     @GetMapping("/all")
+    @Operation(summary = "Obtiene todas las compras", description = "Recuperar todas las compras en el sistema") 
     public ResponseEntity<List<Product>> getAll(){
         return new ResponseEntity<>(productService.getAll(),HttpStatus.OK);
     };
