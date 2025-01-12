@@ -1,0 +1,1 @@
+java -jar "-Dspring.profiles.active=pro" C:\workspace\java\soncco-market\build\libs\soncco-market-1.0.jar
